@@ -1,4 +1,4 @@
-package com.laroy.adscientiamtest
+package com.laroy.adscientiamtest.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.laroy.adscientiamtest.ui.screen.MainScreen
 import com.laroy.adscientiamtest.ui.theme.AdScientiamTestTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,27 +18,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AdScientiamTestTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
+                MainScreen()
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     AdScientiamTestTheme {
-        Greeting("Android")
+        MainScreen()
     }
 }

@@ -1,0 +1,5 @@
+<resources>
+    <string name="drag">Déplacer</string>
+    <string name="positions">Positions</string>
+    <string name="settings">Paramètres</string>
+</resources>
