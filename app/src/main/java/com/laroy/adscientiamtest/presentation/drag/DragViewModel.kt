@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
 
-const val MAX_SIZE_BEFORE_SAVING = 1000
+const val MAX_SIZE_BEFORE_SAVING = 100
 
 @HiltViewModel
 class DragViewModel @Inject constructor(
@@ -24,6 +24,7 @@ class DragViewModel @Inject constructor(
     internal val state: StateFlow<DragState>
         get() = _state
 
+    // We save in database the last positions to avoid to save at each new position
     private val lastPositions = mutableListOf<Position>()
 
     fun onEvent(event: DragEvent) {
@@ -38,12 +39,19 @@ class DragViewModel @Inject constructor(
                     )
                 )
                 if (lastPositions.size >= MAX_SIZE_BEFORE_SAVING) {
-                    viewModelScope.launch {
-                        savePositionUseCase(lastPositions)
-                    }
-                    lastPositions.clear()
+                    savePositions()
                 }
             }
+            DragEvent.OnScreenPaused -> {
+                savePositions()
+            }
         }
+    }
+
+    private fun savePositions() {
+        viewModelScope.launch {
+            savePositionUseCase(lastPositions)
+        }
+        lastPositions.clear()
     }
 }
