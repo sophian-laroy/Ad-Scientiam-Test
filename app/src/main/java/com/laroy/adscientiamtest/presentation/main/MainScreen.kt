@@ -1,12 +1,11 @@
-package com.laroy.adscientiamtest.ui.screen
+package com.laroy.adscientiamtest.presentation.main
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -24,10 +24,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.laroy.adscientiamtest.ui.BottomNavItem
-import com.laroy.adscientiamtest.ui.IconResource
-import com.laroy.adscientiamtest.ui.theme.AdScientiamTestTheme
 import com.laroy.adscientiamtest.R
+import com.laroy.adscientiamtest.presentation.theme.AdScientiamTestTheme
+import com.laroy.adscientiamtest.presentation.position.PositionsScreen
+import com.laroy.adscientiamtest.presentation.settings.SettingsScreen
+import com.laroy.adscientiamtest.presentation.drag.DragScreen
+import com.laroy.adscientiamtest.presentation.IconResource
 
 const val DRAG_SCREEN_ROUTE = "drag"
 const val POSITIONS_SCREEN_ROUTE = "positions"
@@ -40,6 +42,7 @@ private val tabItems = listOf(
     SETTINGS_SCREEN_ROUTE
 )
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen() {
@@ -145,4 +148,11 @@ fun BottomNavigationBar(
             )
         }
     }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun MainPreview() {
+    MainScreen()
 }

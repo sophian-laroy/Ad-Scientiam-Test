@@ -1,4 +1,4 @@
-package com.laroy.adscientiamtest.ui.theme
+package com.laroy.adscientiamtest.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

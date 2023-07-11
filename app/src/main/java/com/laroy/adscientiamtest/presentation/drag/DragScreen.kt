@@ -1,0 +1,145 @@
+package com.laroy.adscientiamtest.presentation.drag
+
+import android.util.Log
+import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.layout.positionInRoot
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntSize
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.laroy.adscientiamtest.presentation.theme.Yellow_AdScientiamTest
+import com.laroy.adscientiamtest.presentation.DragState
+import kotlin.math.roundToInt
+
+const val DEFAULT_SIZE_IN_PX = 70f
+
+@Composable
+fun DragScreen(
+    viewModel: DragViewModel = hiltViewModel()
+) {
+    val state = viewModel.state.collectAsState().value
+
+    DragScreenContent(
+        state = state,
+        onEvent = viewModel::onEvent
+    )
+}
+
+@Composable
+fun DragScreenContent(
+    state: DragState,
+    onEvent: (DragEvent) -> Unit
+) {
+    var size by remember { mutableStateOf(IntSize.Zero) }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .onSizeChanged {
+                Log.d("Coordinates", "DragScreenContent onSizeChanged $it")
+                size = it
+            }
+    ) {
+        DraggableComponent(
+            content = {
+                ExampleBox(
+                    shape = RectangleShape,
+                    sizeInPx = DEFAULT_SIZE_IN_PX,
+                    color = Yellow_AdScientiamTest
+                )
+            },
+            {
+                size
+            }
+        ) { x, y ->
+            onEvent(DragEvent.PositionChanged(x.toInt(), y.toInt()))
+        }
+    }
+}
+
+@Composable
+fun ExampleBox(
+    shape: Shape,
+    sizeInPx: Float,
+    color: Color
+) {
+    Box(
+        modifier = Modifier
+            .size(sizeInPx.pxToDp())
+            .clip(shape)
+            .background(color)
+    )
+}
+
+@Composable
+fun DraggableComponent(
+    content: @Composable () -> Unit,
+    getParentSize: () -> IntSize,
+    onPositionChanged: (Float, Float) -> Unit
+) {
+    var offsetX by remember { mutableStateOf(0f) }
+    var offsetY by remember { mutableStateOf(0f) }
+    var centerX by remember { mutableStateOf(0f) }
+    var centerY by remember { mutableStateOf(0f) }
+    var size by remember { mutableStateOf(IntSize.Zero) }
+    Box(
+        content = {
+            content()
+        },
+        modifier =
+        Modifier
+            .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+            .pointerInput(Unit) {
+                detectDragGestures { change, dragAmount ->
+                    change.consume()
+                    offsetX =
+                        (offsetX + dragAmount.x).coerceIn(
+                            0f,
+                            getParentSize().width.toFloat() - size.width
+                        )
+                    offsetY = (offsetY + dragAmount.y).coerceIn(
+                        0f,
+                        getParentSize().height.toFloat() - size.height
+                    )
+                }
+            }
+            .onSizeChanged {
+                size = it
+            }
+            .onGloballyPositioned { coordinates ->
+                val position = coordinates.positionInRoot()
+                centerX = position.x + (size.width) / 2
+                centerY = position.y + (size.height) / 2
+
+                onPositionChanged(centerX, centerY)
+            }
+    )
+}
+
+@Composable
+fun Dp.dpToPx() = with(LocalDensity.current) { this@dpToPx.toPx() }
+
+@Composable
+fun Float.pxToDp() = with(LocalDensity.current) { this@pxToDp.toDp() }
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun DragScreenContentPreview() {
+    DragScreenContent(
+        state = DragState(isSaving = false),
+        onEvent = {}
+    )
+}

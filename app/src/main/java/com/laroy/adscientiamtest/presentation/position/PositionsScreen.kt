@@ -1,4 +1,4 @@
-package com.laroy.adscientiamtest.ui.screen
+package com.laroy.adscientiamtest.presentation.position
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable

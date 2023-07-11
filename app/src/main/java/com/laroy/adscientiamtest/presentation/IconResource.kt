@@ -1,4 +1,4 @@
-package com.laroy.adscientiamtest.ui
+package com.laroy.adscientiamtest.presentation
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
