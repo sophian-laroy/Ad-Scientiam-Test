@@ -1,11 +1,9 @@
 package com.laroy.adscientiamtest.presentation.settings
 
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.laroy.adscientiamtest.R
 import com.laroy.adscientiamtest.domain.usecase.AppThemeUseCase
-import com.laroy.adscientiamtest.domain.usecase.SavePositionUseCase
 import com.laroy.adscientiamtest.presentation.position.SettingsEvent
 import com.laroy.adscientiamtest.presentation.theme.AppTheme
 import com.laroy.adscientiamtest.utils.UiText

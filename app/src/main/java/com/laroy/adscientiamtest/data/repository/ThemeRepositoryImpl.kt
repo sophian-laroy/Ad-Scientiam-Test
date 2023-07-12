@@ -1,9 +1,5 @@
 package com.laroy.adscientiamtest.data.repository
 
-import com.laroy.adscientiamtest.data.database.entity.PositionDatabase
-import com.laroy.adscientiamtest.data.source.PositionLocalDataSource
-import com.laroy.adscientiamtest.domain.model.PositionDir
-import com.laroy.adscientiamtest.domain.repository.PositionRepository
 import com.laroy.adscientiamtest.domain.repository.ThemeRepository
 import com.laroy.adscientiamtest.presentation.theme.AppTheme
 import com.laroy.adscientiamtest.utils.AppDatastore

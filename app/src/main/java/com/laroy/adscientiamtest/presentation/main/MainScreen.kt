@@ -25,10 +25,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.laroy.adscientiamtest.R
+import com.laroy.adscientiamtest.presentation.IconResource
+import com.laroy.adscientiamtest.presentation.drag.DragScreen
 import com.laroy.adscientiamtest.presentation.position.PositionsScreen
 import com.laroy.adscientiamtest.presentation.settings.SettingsScreen
-import com.laroy.adscientiamtest.presentation.drag.DragScreen
-import com.laroy.adscientiamtest.presentation.IconResource
 
 const val DRAG_SCREEN_ROUTE = "drag"
 const val POSITIONS_SCREEN_ROUTE = "positions"

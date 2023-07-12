@@ -1,8 +1,6 @@
 package com.laroy.adscientiamtest.di
 
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import com.laroy.adscientiamtest.utils.AppDatastore
 import dagger.Module
 import dagger.Provides
