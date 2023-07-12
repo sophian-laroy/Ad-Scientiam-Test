@@ -7,4 +7,6 @@ interface PositionLocalDataSource {
 
     suspend fun save(positions: List<PositionDatabase>)
 
+    suspend fun getAllPositions(): List<PositionDatabase>
+
 }

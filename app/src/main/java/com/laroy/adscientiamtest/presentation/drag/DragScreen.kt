@@ -25,7 +25,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.laroy.adscientiamtest.presentation.theme.Yellow_AdScientiamTest
-import com.laroy.adscientiamtest.presentation.DragState
 import kotlin.math.roundToInt
 
 const val DEFAULT_SIZE_IN_PX = 70f
@@ -63,7 +62,6 @@ fun DragScreenContent(
         modifier = Modifier
             .fillMaxSize()
             .onSizeChanged {
-                Log.d("Coordinates", "DragScreenContent onSizeChanged $it")
                 size = it
             }
     ) {
@@ -79,6 +77,7 @@ fun DragScreenContent(
                 size
             }
         ) { x, y ->
+            Log.d("Coordinates", "PositionChanged ${x.toInt()} ${y.toInt()}")
             onEvent(DragEvent.PositionChanged(x.toInt(), y.toInt()))
         }
     }

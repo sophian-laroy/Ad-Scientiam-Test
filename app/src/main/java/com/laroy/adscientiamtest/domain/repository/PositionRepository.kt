@@ -7,4 +7,6 @@ interface PositionRepository {
 
     suspend fun savePositionsInDatabase(positions: List<PositionDatabase>)
 
+    suspend fun getAllPositionsInDatabase(): List<PositionDatabase>
+
 }

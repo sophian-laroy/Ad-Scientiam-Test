@@ -14,4 +14,8 @@ class PositionRepositoryImpl @Inject constructor(
         positionLocalDataSource.save(positions)
     }
 
+    override suspend fun getAllPositionsInDatabase(): List<PositionDatabase> {
+        return positionLocalDataSource.getAllPositions()
+    }
+
 }

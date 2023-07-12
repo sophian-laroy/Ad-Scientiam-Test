@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.laroy.adscientiamtest.domain.model.Position
 import com.laroy.adscientiamtest.domain.usecase.SavePositionUseCase
-import com.laroy.adscientiamtest.presentation.DragState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

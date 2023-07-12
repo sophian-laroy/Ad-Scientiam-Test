@@ -3,4 +3,5 @@
     <string name="drag">Drag</string>
     <string name="positions">Positions</string>
     <string name="settings">Settings</string>
+    <string name="inverse_order">Inverse order</string>
 </resources>
