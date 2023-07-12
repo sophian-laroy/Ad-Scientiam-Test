@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 
 class AppDatastore(private val context: Context) {
     companion object {
-        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("AdScentiamTest")
+        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("AdScientiamTest")
         private val ORDER_DIR_KEY = stringPreferencesKey("orderDir")
         private val THEME_KEY = stringPreferencesKey("theme")
     }
