@@ -11,12 +11,10 @@ import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -85,24 +83,25 @@ fun PositionsScreenContent(
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_clear_all),
                     contentDescription = "Clear",
-                    tint = Color.White,
+                    tint = colors.primary
                 )
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
             ExtendedFloatingActionButton(
+                backgroundColor = colors.secondaryVariant,
                 text = {
                     Text(
                         text = stringResource(R.string.inverse_order),
-                        color = Color.White
+                        color = colors.primary
                     )
                 },
                 icon = {
                     Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.ic_sort),
-                        contentDescription = "Navigate FAB",
-                        tint = Color.White,
+                        contentDescription = "Sort",
+                        tint = colors.primary,
                     )
                 },
                 onClick = {

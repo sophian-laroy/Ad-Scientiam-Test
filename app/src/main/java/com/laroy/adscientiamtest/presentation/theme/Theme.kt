@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.collect
 private val LightColorPalette = lightColors(
     primary = Yellow_AdScientiamTest,
     secondary = Color.Black,
+    secondaryVariant = Color.DarkGray,
     background = Color.White,
     onPrimary = Color.White,
     onBackground = Color.Black
@@ -22,6 +23,7 @@ private val LightColorPalette = lightColors(
 private val DarkColorPalette = darkColors(
     primary = Yellow_AdScientiamTest,
     secondary = Color.White,
+    secondaryVariant = Color.LightGray,
     background = Color.DarkGray,
     onPrimary = Color.White,
     onBackground = Color.White
