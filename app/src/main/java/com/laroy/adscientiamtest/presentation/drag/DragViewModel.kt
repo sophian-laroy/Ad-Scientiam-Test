@@ -19,10 +19,6 @@ class DragViewModel @Inject constructor(
     private val savePositionUseCase: SavePositionUseCase
 ): ViewModel() {
 
-    private val _state = MutableStateFlow(DragState())
-    internal val state: StateFlow<DragState>
-        get() = _state
-
     // We save in database the last positions to avoid to save at each new position
     private val lastPositions = mutableListOf<Position>()
 

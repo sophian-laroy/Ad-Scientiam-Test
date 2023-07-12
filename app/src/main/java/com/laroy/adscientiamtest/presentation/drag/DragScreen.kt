@@ -33,22 +33,18 @@ const val DEFAULT_SIZE_IN_PX = 70f
 fun DragScreen(
     viewModel: DragViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.collectAsState().value
-
     DragScreenContent(
-        state = state,
         onEvent = viewModel::onEvent
     )
 }
 
 @Composable
 fun DragScreenContent(
-    state: DragState,
     onEvent: (DragEvent) -> Unit
 ) {
     var size by remember { mutableStateOf(IntSize.Zero) }
 
-    OnLifecycleEvent { owner, event ->
+    OnLifecycleEvent { _, event ->
         // do stuff on event
         when (event) {
             Lifecycle.Event.ON_PAUSE -> {
@@ -170,7 +166,6 @@ fun OnLifecycleEvent(onEvent: (owner: LifecycleOwner, event: Lifecycle.Event) ->
 @Composable
 fun DragScreenContentPreview() {
     DragScreenContent(
-        state = DragState(isSaving = false),
         onEvent = {}
     )
 }
