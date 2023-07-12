@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.laroy.adscientiamtest.R
 import com.laroy.adscientiamtest.domain.model.Position
+import com.laroy.adscientiamtest.presentation.drag.DragEvent
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,11 +30,17 @@ import java.util.*
 @Composable
 fun PositionsScreen(viewModel: PositionViewModel = hiltViewModel()) {
     val state = viewModel.state.collectAsState().value
-    PositionsScreenContent(state)
+    PositionsScreenContent(
+        state = state,
+        onEvent = viewModel::onEvent
+    )
 }
 
 @Composable
-fun PositionsScreenContent(state: PositionState) {
+fun PositionsScreenContent(
+    state: PositionState,
+    onEvent: (PositionEvent) -> Unit
+) {
 
     val timeFormatter = SimpleDateFormat("HH:mm:ss.SSS", Locale.getDefault())
     val dateFormatter: DateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
@@ -99,7 +106,7 @@ fun PositionsScreenContent(state: PositionState) {
                     )
                 },
                 onClick = {
-
+                    onEvent(PositionEvent.OnInverseOrderClicked)
                 }
             )
         }
@@ -142,6 +149,7 @@ fun PositionsScreenPreview() {
                 Position(200, 20, 20),
                 Position(300, 30, 30)
             )
-        )
+        ),
+        onEvent = {}
     )
 }

@@ -10,8 +10,8 @@ class PositionLocalDataSourceImpl(private val positionDao: PositionDao) : Positi
         positionDao.save(*positions.toTypedArray())
     }
 
-    override suspend fun getAllPositions(): List<PositionDatabase> {
-        return positionDao.getAll()
+    override suspend fun getAllPositions(isAsc: Boolean): List<PositionDatabase> {
+        return positionDao.getAll(isAsc)
     }
 
 }
