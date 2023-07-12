@@ -14,4 +14,7 @@ interface PositionDao {
             "CASE WHEN :isAsc = 0 THEN date END DESC")
     suspend fun getAll(isAsc: Boolean): List<PositionDatabase>
 
+    @Query("DELETE FROM Position")
+    suspend fun deleteAll()
+
 }

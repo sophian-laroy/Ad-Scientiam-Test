@@ -8,8 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material3.SmallFloatingActionButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,12 +16,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.laroy.adscientiamtest.R
 import com.laroy.adscientiamtest.domain.model.Position
-import com.laroy.adscientiamtest.presentation.drag.DragEvent
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,6 +40,7 @@ fun PositionsScreenContent(
     state: PositionState,
     onEvent: (PositionEvent) -> Unit
 ) {
+    var showClearDialog by remember { mutableStateOf(false) }
 
     val timeFormatter = SimpleDateFormat("HH:mm:ss.SSS", Locale.getDefault())
     val dateFormatter: DateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
@@ -77,7 +77,7 @@ fun PositionsScreenContent(
         ) {
             SmallFloatingActionButton(
                 onClick = {
-
+                    showClearDialog = showClearDialog.not()
                 },
                 containerColor = colors.secondaryVariant,
                 shape = RoundedCornerShape(12.dp),
@@ -110,6 +110,33 @@ fun PositionsScreenContent(
                 }
             )
         }
+    }
+
+    if (showClearDialog) {
+        AlertDialog(
+            onDismissRequest = { showClearDialog = false },
+            title = {
+                Text(stringResource(R.string.clear_all_positions))
+            },
+            text = {
+                Text(stringResource(R.string.can_not_be_undone))
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showClearDialog = false
+                        onEvent(PositionEvent.OnClearClicked)
+                    }
+                ) {
+                    Text(stringResource(R.string.clear_all).uppercase())
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showClearDialog = false }) {
+                    Text(stringResource(android.R.string.cancel).uppercase())
+                }
+            },
+        )
     }
 }
 

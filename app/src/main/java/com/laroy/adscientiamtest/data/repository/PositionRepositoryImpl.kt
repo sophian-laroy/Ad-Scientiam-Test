@@ -29,4 +29,8 @@ class PositionRepositoryImpl @Inject constructor(
         return datastore.getPositionDir
     }
 
+    override suspend fun clearPositionsInDatabase() {
+        positionLocalDataSource.clearAll()
+    }
+
 }

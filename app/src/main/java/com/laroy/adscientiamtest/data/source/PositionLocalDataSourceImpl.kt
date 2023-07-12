@@ -14,4 +14,8 @@ class PositionLocalDataSourceImpl(private val positionDao: PositionDao) : Positi
         return positionDao.getAll(isAsc)
     }
 
+    override suspend fun clearAll() {
+        positionDao.deleteAll()
+    }
+
 }

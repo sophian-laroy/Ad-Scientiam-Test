@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.laroy.adscientiamtest.domain.model.PositionDir
+import com.laroy.adscientiamtest.domain.usecase.ClearPositionsUseCase
 import com.laroy.adscientiamtest.domain.usecase.GetPositionsUseCase
 import com.laroy.adscientiamtest.domain.usecase.PositionDirUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,6 +17,7 @@ import javax.inject.Inject
 class PositionViewModel @Inject constructor(
     private val getPositionsUseCase: GetPositionsUseCase,
     private val positionDirUseCase: PositionDirUseCase,
+    private val clearPositionsUseCase: ClearPositionsUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(PositionState())
@@ -41,6 +43,12 @@ class PositionViewModel @Inject constructor(
                         positionDirUseCase.update(newPositionDir)
                         getPositions()
                     }
+                }
+            }
+            is PositionEvent.OnClearClicked -> {
+                viewModelScope.launch {
+                    clearPositionsUseCase()
+                    getPositions()
                 }
             }
         }

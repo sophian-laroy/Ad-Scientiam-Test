@@ -2,5 +2,8 @@
     <string name="drag">Déplacer</string>
     <string name="positions">Positions</string>
     <string name="settings">Paramètres</string>
-    <string name="inverse_order">Inverse order</string>
+    <string name="inverse_order">Inverser l\'ordre</string>
+    <string name="clear_all_positions">Effacer toutes les positions</string>
+    <string name="can_not_be_undone">Ne peut pas être annulé</string>
+    <string name="clear_all">Effacer tout</string>
 </resources>

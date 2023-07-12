@@ -14,4 +14,6 @@ interface PositionRepository {
 
     fun getPositionDir(): Flow<PositionDir>
 
+    suspend fun clearPositionsInDatabase()
+
 }

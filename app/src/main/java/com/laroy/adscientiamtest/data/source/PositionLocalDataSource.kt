@@ -9,4 +9,6 @@ interface PositionLocalDataSource {
 
     suspend fun getAllPositions(isAsc: Boolean): List<PositionDatabase>
 
+    suspend fun clearAll()
+
 }
