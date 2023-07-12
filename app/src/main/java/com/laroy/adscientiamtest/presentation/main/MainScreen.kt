@@ -25,7 +25,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.laroy.adscientiamtest.R
-import com.laroy.adscientiamtest.presentation.theme.AdScientiamTestTheme
 import com.laroy.adscientiamtest.presentation.position.PositionsScreen
 import com.laroy.adscientiamtest.presentation.settings.SettingsScreen
 import com.laroy.adscientiamtest.presentation.drag.DragScreen
@@ -46,56 +45,52 @@ private val tabItems = listOf(
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen() {
-    AdScientiamTestTheme {
-        val navController = rememberNavController()
-        Scaffold(
-            bottomBar = {
-                BottomNavigationBar(
-                    items = listOf(
-                        BottomNavItem(
-                            name = stringResource(id = R.string.drag),
-                            route = DRAG_SCREEN_ROUTE,
-                            icon = IconResource.fromDrawableResource(R.drawable.ic_drag)
-                        ),
-                        BottomNavItem(
-                            name = stringResource(id = R.string.positions),
-                            route = POSITIONS_SCREEN_ROUTE,
-                            icon = IconResource.fromDrawableResource(R.drawable.ic_history)
-                        ),
-                        BottomNavItem(
-                            name = stringResource(id = R.string.settings),
-                            route = SETTINGS_SCREEN_ROUTE,
-                            icon = IconResource.fromImageVector(Icons.Default.Settings)
-                        )
+    val navController = rememberNavController()
+    Scaffold(
+        bottomBar = {
+            BottomNavigationBar(
+                items = listOf(
+                    BottomNavItem(
+                        name = stringResource(id = R.string.drag),
+                        route = DRAG_SCREEN_ROUTE,
+                        icon = IconResource.fromDrawableResource(R.drawable.ic_drag)
                     ),
-                    navController = navController,
-                    onItemClick = {
-                        navController.navigate(it.route)
-                    }
-                )
-            }
-        ) { innerPadding ->
-            // Apply the padding globally to the whole BottomNavScreensController
-            Box(modifier = Modifier.padding(innerPadding)) {
-                Navigation(navController = navController)
-            }
+                    BottomNavItem(
+                        name = stringResource(id = R.string.positions),
+                        route = POSITIONS_SCREEN_ROUTE,
+                        icon = IconResource.fromDrawableResource(R.drawable.ic_history)
+                    ),
+                    BottomNavItem(
+                        name = stringResource(id = R.string.settings),
+                        route = SETTINGS_SCREEN_ROUTE,
+                        icon = IconResource.fromImageVector(Icons.Default.Settings)
+                    )
+                ),
+                navController = navController,
+                onItemClick = {
+                    navController.navigate(it.route)
+                }
+            )
+        }
+    ) { innerPadding ->
+        // Apply the padding globally to the whole BottomNavScreensController
+        Box(modifier = Modifier.padding(innerPadding)) {
+            Navigation(navController = navController)
         }
     }
 }
 
 @Composable
 fun Navigation(navController: NavHostController) {
-    AdScientiamTestTheme {
-        NavHost(navController = navController, startDestination = DRAG_SCREEN_ROUTE) {
-            composable(DRAG_SCREEN_ROUTE) {
-                DragScreen()
-            }
-            composable(POSITIONS_SCREEN_ROUTE) {
-                PositionsScreen()
-            }
-            composable(SETTINGS_SCREEN_ROUTE) {
-                SettingsScreen()
-            }
+    NavHost(navController = navController, startDestination = DRAG_SCREEN_ROUTE) {
+        composable(DRAG_SCREEN_ROUTE) {
+            DragScreen()
+        }
+        composable(POSITIONS_SCREEN_ROUTE) {
+            PositionsScreen()
+        }
+        composable(SETTINGS_SCREEN_ROUTE) {
+            SettingsScreen()
         }
     }
 }

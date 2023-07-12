@@ -6,4 +6,7 @@
     <string name="clear_all_positions">Effacer toutes les positions</string>
     <string name="can_not_be_undone">Ne peut pas être annulé</string>
     <string name="clear_all">Effacer tout</string>
+    <string name="app_theme_system">Thème du système</string>
+    <string name="app_theme_dark">Thème sombre</string>
+    <string name="app_theme_light">Thème clair</string>
 </resources>
